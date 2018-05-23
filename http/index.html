@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+	<!-- angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<!-- custom JS -->
+	<script src="/js/portfolio.js"></script>
+	<script src="/js/social.js"></script>
+
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Ruda" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+
+	<!-- custom style -->
+	<link href="/css/portfolio.css" rel="stylesheet">
+
+	<!--
+
+		body starts
+
+	-->
+
+	<body ng-app="portfolio" ng-controller="bodyController">
+
+		<div class="top_nav">
+
+			<div
+				class="top_nav_link clickable"
+				ng-click="scratch.currentView = 'portfolio.html'"
+			>
+				Portfolio
+			</div>
+			<div class="top_nav_title_bar">
+				Timothy O'Connell 
+			</div>
+			<div
+				class="top_nav_link clickable"
+				ng-click="scratch.currentView = 'about.html'"
+			>
+				About
+			</div>
+			<div
+				class="top_nav_link clickable"
+				ng-click="scratch.currentView = 'resume.html'"
+			>
+				R&#233;sum&#233; 
+			</div>
+
+		</div><!-- top_nav -->
+
+		<div
+			id="currentViewContainer"
+			class="current_view_container"
+		>
+
+			<div
+				ng-include="'/html/' + scratch.currentView"
+				class="current_view_content"
+			></div>
+
+		</div>
+
+
+	</body>
+
+</html>

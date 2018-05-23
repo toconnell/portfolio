@@ -1,0 +1,21 @@
+server {
+
+    ### no-www redirect
+    listen   443;
+    server_name www.toconnell.info;
+    rewrite  ^  https://toconnell.info$request_uri? permanent;
+}
+
+server {
+
+    listen   443;
+    server_name  toconnell.info;
+
+    access_log  /var/log/nginx/https_toconnell_info.access.log;
+    error_log   /var/log/nginx/https_toconnell_info.error.log;
+
+    rewrite  ^  https://portfolio.toconnell.info$request_uri? permanent;
+ssl_certificate /etc/letsencrypt/live/toconnell.info/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/toconnell.info/privkey.pem; # managed by Certbot
+
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=api.toconnell.info API Service daemon
+Requires=socket
+After=network.target
+
+[Service]
+PIDFile=/var/run/api.toconnell.info.pid
+User=toconnell
+Group=www-data
+WorkingDirectory=/home/toconnell/toconnell_info/portfolio
+ExecStart=/usr/local/bin/gunicorn --pid /var/run/toconnell_info/api.pid --workers 3 --bind unix:/var/run/toconnell_info/api.sock -m 007 wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

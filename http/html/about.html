@@ -1,0 +1,27 @@
+
+<h2>Biography</h2>
+<div class="content_container">
+
+</div>
+
+<h2>Social</h2>
+<div 
+	class="content_container block_links_container"
+>
+
+	<div
+		class="social_link_block clickable"
+		ng-repeat="link in socialLinks"
+		ng-click="newTab(link.url)"
+	>
+		{{link.name}}
+	</div>
+		
+
+</div>
+
+<h2>Other</h2>
+<div class="content_container">
+	Source code for this website <a href="https://github.com/toconnell/portfolio" target="top">available on Github</a>.
+
+</div>

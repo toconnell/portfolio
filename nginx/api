@@ -1,0 +1,30 @@
+server {
+    listen  80;
+    server_name  api.toconnell.info;
+
+    ### Logging
+    access_log  /var/log/nginx/api.toconnell_info.log;
+    error_log   /var/log/nginx/api.toconnell_info.log;
+
+    large_client_header_buffers 4 32k;		# big-ass headers
+    client_max_body_size 5M;    			# big-ass images
+
+    ### Locations
+    location / {
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+        proxy_pass         http://127.0.0.1:8006;
+    }
+
+    listen 443 ssl; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/toconnell.info/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/toconnell.info/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+    if ($scheme != "https") {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+}

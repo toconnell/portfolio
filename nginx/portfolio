@@ -1,0 +1,20 @@
+server {
+    listen  443;
+    server_name  portfolio.toconnell.info;
+
+    ### Logging
+    access_log  /var/log/nginx/portfolio.toconnell_info.log;
+    error_log   /var/log/nginx/portfolio.toconnell_info.log;
+
+    ### Locations
+    location / {
+		root	/home/toconnell/toconnell_info/portfolio/http/;
+		index	index.html;
+#		rewrite	^/& /index	last;
+#		rewrite ^/blog/(.*)$	/index?view_post=$1	last;
+    }
+
+	ssl_certificate /etc/letsencrypt/live/toconnell.info/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/toconnell.info/privkey.pem; # managed by Certbot
+
+}
